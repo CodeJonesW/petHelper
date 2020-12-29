@@ -12,7 +12,7 @@ Appliccation to allow users to search PetHelpers collection of help provided by 
 
 ## Learning Objectives
 
-Use geolocation api
+Use geolocation api and 
 Send message to other users
 
 
