@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetHelper</title>
+
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyCRcKqdQaMKYqoSN3kuAj4TylveBGlcI5E",
+    authDomain: "pethelper-a8aa1.firebaseapp.com",
+    projectId: "pethelper-a8aa1",
+    storageBucket: "pethelper-a8aa1.appspot.com",
+    messagingSenderId: "115069051946",
+    appId: "1:115069051946:web:858f20c5d5dc053d1f4f53",
+    measurementId: "G-4LLQ6VSW1S"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+
+<script src="app.js" defer></script>
+</head>
+
+<body>
+
+    <h1>PetHelper 🔥🔥🔥</h1>
+
+    <section id="whenSignedOut">
+
+        <button id="signInBtn">Sign In With Google</button>
+
+    </section>
+
+    <section id="whenSignedIn" hidden="true">
+
+        <div id="userDetails"></div>
+
+        <!-- <button id="signOutBtn" hidden="true">Sign Out</button> -->
+
+    </section>
+
+
+    <section id="noteDiv" hidden="true">
+        <ul id="notesList">
+
+        </ul>
+        <input id="noteInput">
+        <button id="createNote"> Create a New Note</button>
+
+        <br>
+        <br>
+        <br>
+        <button id="signOutBtn" hidden="true">Sign Out</button>
+    </section>
+
+
+
+</body>
+
+</html>
