@@ -44,6 +44,9 @@ const petHelperDiv = document.getElementById('petHelperDiv')
 const createPetHelper = document.getElementById('createPetHelper')
 const firstNameInput = document.getElementById('firstName')
 const lastNameInput = document.getElementById('lastName')
+const service1 = document.getElementById("service1")
+const service2 = document.getElementById("service2")
+const service3 = document.getElementById("service3")
 
 // two things i need when accessing firestore in real time
 // 1) reference to document or collection i want access such
@@ -59,7 +62,7 @@ let unsubscribe;
 // auth state before making a call to the Db
 auth.onAuthStateChanged(user => {
     if (user) {
-
+        console.log(user)
         const { serverTimestamp } = firebase.firestore.FieldValue;
 
         petHelperDiv.hidden = false
@@ -67,23 +70,23 @@ auth.onAuthStateChanged(user => {
 
 
         createPetHelper.onclick = (e) => {
-            console.log(e)
-            // e.preventDefault()
-            // console.log("my note", noteInput.value)
-            if (firstNameInput.value.trim() === "" || lastNameInput.value.trim() === "" ) {
-                alert("Please provide a full name");
-                firstNameInput.focus(); 
-                return false;
-            } else {
+            let serviceValues = []
+            e.preventDefault()
+            var checkedValues = document.querySelectorAll('.services:checked');
+            checkedValues.forEach(element => serviceValues.push(element.value))
+
+            let names = user.displayName.split(" ")
+
+            
                 petHelperRef.add({
                     uid: user.uid,
-                    firstName: firstNameInput.value,
-                    lastName: lastNameInput.value,
-                    providedServices: ["walk"],
+                    firstName: names[0],
+                    lastName: names[1],
+                    providedServices: serviceValues,
                     // use servertimeStamp instead of Date.now() so that date obj is consistent across all client devices
                     createdAt: serverTimestamp()
                 });
-            }
+            
 
         }
 
@@ -100,7 +103,7 @@ auth.onAuthStateChanged(user => {
                 const items = querySnapshot.docs.map(doc => {
                     // let date = doc.data().createdAt.toDate()
 
-                    return `<li>${doc.data().firstName}</li>`
+                    return `<li> Name: ${doc.data().firstName + " " + doc.data().lastName} <br> Services: ${doc.data().providedServices}</li><button>View</button>`
                 });
                 petHelperList.innerHTML = items.join('');
             })
