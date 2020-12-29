@@ -73,6 +73,7 @@ auth.onAuthStateChanged(user => {
             let serviceValues = []
             e.preventDefault()
             var checkedValues = document.querySelectorAll('.services:checked');
+           
             checkedValues.forEach(element => serviceValues.push(element.value))
 
             let names = user.displayName.split(" ")
@@ -83,6 +84,7 @@ auth.onAuthStateChanged(user => {
                     firstName: names[0],
                     lastName: names[1],
                     providedServices: serviceValues,
+                    email: user.email,
                     // use servertimeStamp instead of Date.now() so that date obj is consistent across all client devices
                     createdAt: serverTimestamp()
                 });

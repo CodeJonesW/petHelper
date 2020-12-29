@@ -38,22 +38,38 @@
 
 <body>
 
-    <h1>PetHelper 🐶🐶🐶</h1>
 
     <section id="whenSignedOut">
-
+        <h1>PetHelper 🐶🐶🐶</h1>
         <button id="signInBtn">Sign In With Google</button>
 
     </section>
 
+
+
+
+
+
+
     <section id="whenSignedIn" hidden="true">
-
-        <div id="userDetails"></div>
+        <h1>PetHelper 🐶🐶🐶</h1>
         <button id="signOutBtn" hidden="true">Sign Out</button>
+        <div id="userDetails">
+            
+        </div>
+        
         <br>
         <br>
         <br>
 
+        <section id="petHelperDiv" hidden="true">
+            <h3>Current Pet Helpers</h3>
+            <ul id="petHelperList">
+    
+            </ul>
+    
+            
+        </section>
 
         <h3>Think you can help us take care of our pets? Join us now!</h1>
         <form>
@@ -62,26 +78,19 @@
                 <label for="service1"> Walk</label><br>
                 <input class="services" type="checkbox" id="service2" name="bath" value="Bath">
                 <label for="service2"> Bath</label><br>
-                <input class="services" type="checkbox" id="service3" name="houseSit" value="House Sit">
+                <input class="services" type="checkbox" id="service3" name="houseSit" value="HouseSit">
                 <label for="service3"> HouseSit</label><br>
          
             <button type="submit" id="createPetHelper">Become a Pet Helper</button>
         </form>
-    </section>
+    
 
     
 
 
-    <section id="petHelperDiv" hidden="true">
-        <h3>Current Pet Helpers</h3>
-        <ul id="petHelperList">
+ 
 
-        </ul>
-
-        <button id="signOutBtn" hidden="true">Sign Out</button>
-    </section>
-
-
+</section>
 
 </body>
 
