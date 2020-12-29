@@ -22,7 +22,7 @@ auth.onAuthStateChanged(user => {
         whenSignedIn.hidden = false;
         whenSignedOut.hidden = true;
         signOutBtn.hidden = false
-        userDetails.innerHTML = `<h3> Hi ${user.displayName}! <p>Find pet care in your area!  </p>`;
+        userDetails.innerHTML = `<h3> Hi ${user.displayName}! <p>Find Pet Care in your area!  </p>`;
 
     } else {
         whenSignedIn.hidden = true;
@@ -44,6 +44,7 @@ const petHelperDiv = document.getElementById('petHelperDiv')
 const createPetHelper = document.getElementById('createPetHelper')
 const firstNameInput = document.getElementById('firstName')
 const lastNameInput = document.getElementById('lastName')
+const petHelperForm = document.getElementById("petHelperForm")
 const service1 = document.getElementById("service1")
 const service2 = document.getElementById("service2")
 const service3 = document.getElementById("service3")
@@ -74,11 +75,15 @@ auth.onAuthStateChanged(user => {
             e.preventDefault()
             var checkedValues = document.querySelectorAll('.services:checked');
            
+           if(checkedValues.length === 0) {
+               alert("must check one")
+        
+           } else {
             checkedValues.forEach(element => serviceValues.push(element.value))
 
             let names = user.displayName.split(" ")
 
-            
+          
                 petHelperRef.add({
                     uid: user.uid,
                     firstName: names[0],
@@ -88,8 +93,9 @@ auth.onAuthStateChanged(user => {
                     // use servertimeStamp instead of Date.now() so that date obj is consistent across all client devices
                     createdAt: serverTimestamp()
                 });
-            
-
+           }
+            petHelperForm.reset()
+            return
         }
 
         // main advantage of firestore is listening to changes in realtime by making a query
@@ -105,7 +111,7 @@ auth.onAuthStateChanged(user => {
                 const items = querySnapshot.docs.map(doc => {
                     // let date = doc.data().createdAt.toDate()
 
-                    return `<li> Name: ${doc.data().firstName + " " + doc.data().lastName} <br> Services: ${doc.data().providedServices}</li><button>View</button>`
+                    return `<li> Name: ${doc.data().firstName + " " + doc.data().lastName} <br> Services: ${doc.data().providedServices.join(", ")}</li><button>View</button>`
                 });
                 petHelperList.innerHTML = items.join('');
             })
