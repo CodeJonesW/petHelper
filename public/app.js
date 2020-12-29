@@ -35,56 +35,56 @@ auth.onAuthStateChanged(user => {
 
 
 
-// manage notes via firestore
-const db = firebase.firestore();
+// // manage notes via firestore
+// const db = firebase.firestore();
 
-const createNote = document.getElementById('createNote')
-const noteList = document.getElementById('notesList')
-const noteDiv = document.getElementById('noteDiv')
-const noteInput = document.getElementById('noteInput')
-let notesRef;
-let unsubscribe;
+// const createNote = document.getElementById('createNote')
+// const noteList = document.getElementById('notesList')
+// const noteDiv = document.getElementById('noteDiv')
+// const noteInput = document.getElementById('noteInput')
+// let notesRef;
+// let unsubscribe;
 
 
-auth.onAuthStateChanged(user => {
-    if (user) {
+// auth.onAuthStateChanged(user => {
+//     if (user) {
 
-        const { serverTimestamp } = firebase.firestore.FieldValue;
+//         const { serverTimestamp } = firebase.firestore.FieldValue;
 
-        noteDiv.hidden = false
-        notesRef = db.collection('notes')
-        createNote.onclick = () => {
-            // console.log("my note", noteInput.value)
-            if (noteInput.value.trim() === "") {
-                alert("Please enter a note!");
-                noteInput.focus();
-                return false;
-            } else {
-                notesRef.add({
-                    uid: user.uid,
-                    descripton: noteInput.value,
-                    // use servertimeStamp instead of Date.now() so that date obj is consistent across all client devices
-                    createdAt: serverTimestamp()
-                });
-            }
+//         noteDiv.hidden = false
+//         notesRef = db.collection('notes')
+//         createNote.onclick = () => {
+//             // console.log("my note", noteInput.value)
+//             if (noteInput.value.trim() === "") {
+//                 alert("Please enter a note!");
+//                 noteInput.focus();
+//                 return false;
+//             } else {
+//                 notesRef.add({
+//                     uid: user.uid,
+//                     descripton: noteInput.value,
+//                     // use servertimeStamp instead of Date.now() so that date obj is consistent across all client devices
+//                     createdAt: serverTimestamp()
+//                 });
+//             }
 
-        }
-        unsubscribe = notesRef
-            .where('uid', '==', user.uid)
-            .orderBy('createdAt')
-            .onSnapshot(querySnapshot => {
-                const items = querySnapshot.docs.map(doc => {
-                    // let date = doc.data().createdAt.toDate()
+//         }
+//         unsubscribe = notesRef
+//             .where('uid', '==', user.uid)
+//             .orderBy('createdAt')
+//             .onSnapshot(querySnapshot => {
+//                 const items = querySnapshot.docs.map(doc => {
+//                     // let date = doc.data().createdAt.toDate()
 
-                    return `<li>${doc.data().descripton}</li>`
-                });
-                noteList.innerHTML = items.join('');
-            })
-    } else {
+//                     return `<li>${doc.data().descripton}</li>`
+//                 });
+//                 noteList.innerHTML = items.join('');
+//             })
+//     } else {
 
-        unsubscribe && unsubscribe();
-    }
-});
+//         unsubscribe && unsubscribe();
+//     }
+// });
 
 
 
