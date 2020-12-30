@@ -7,6 +7,8 @@
     <title>PetHelper</title>
 
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
     <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 
@@ -37,31 +39,48 @@
 </head>
 
 <body>
-
-
-    <section id="whenSignedOut">
-        <h1>PetHelper 🐶🐶🐶</h1>
-        <button id="signInBtn">Sign In With Google</button>
-
-    </section>
-
-
-
-
-
-
-
-    <section id="whenSignedIn" hidden="true">
-        <h1>PetHelper 🐶🐶🐶</h1>
-        <button id="signOutBtn" hidden="true">Sign Out</button>
-        <div id="userDetails">
-            
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <h1>PetHelper 🐶🐶🐶</h1>
+            <button class="btn btn-primary"  id="signOutBtn" hidden="true">Sign Out</button>
         </div>
+      </nav>
 
-        <section id="petHelperDiv" hidden="true">
-            <ul id="petHelperList">
+    <div class="container-flex">
+        <section id="whenSignedOut">
+            <div class="row">
+                <div class="col-md-4">
+
+                </div>
+                    <div class="col-md-4 text-center">
+                        <button class="btn btn-primary" id="signInBtn">Sign In With Google</button>
+                    </div>
+                <div class="col-md-4">
+
+                </div>
+            </div> 
+        </section>
+    </div>
+   
+
+
+
+
+
+
+
+    <section class="container-flex" id="whenSignedIn" hidden="true">
+        
+        
+        <section class="row" id="userDetails">
+            
+        </section>
     
-            </ul>
+
+        <section  id="petHelperDiv" hidden="true">
+            <div class="row" id="petHelperList">
+    
+            </div>
     
             
         </section>
@@ -76,7 +95,7 @@
                 <input class="services" type="checkbox" id="service3" name="petSit" value="PetSit">
                 <label for="service3"> PetSit</label><br>
          
-            <button type="submit" id="createPetHelper">Become a Pet Helper</button>
+            <button class="btn btn-primary"  type="submit" id="createPetHelper">Become a Pet Helper</button>
         </form>
     
 
@@ -87,6 +106,8 @@
 
 </section>
 
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 </body>
 
 </html>

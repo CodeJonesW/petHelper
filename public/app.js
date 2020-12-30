@@ -1,5 +1,4 @@
 console.log(firebase)
-
 // user sign in and signout via firebase authentication
 const auth = firebase.auth();
 
@@ -17,16 +16,16 @@ signOutBtn.onclick = () => auth.signOut()
 // conditional logic for when auth state changes allows us to control ui pending the state of login
 auth.onAuthStateChanged(user => {
     if (user) {
-        console.log("User: ", user)
         // signed in user's info
         whenSignedIn.hidden = false;
         whenSignedOut.hidden = true;
         signOutBtn.hidden = false
-        userDetails.innerHTML = `<h3> Hi ${user.displayName}! <p>Find Pet Care in your area!  </p>`;
+        userDetails.innerHTML = `<h3> Hi ${user.displayName}, Let us help you find Pet Care!  </h3 <br>`;
 
     } else {
         whenSignedIn.hidden = true;
         whenSignedOut.hidden = false;
+        signOutBtn.hidden = true
         userDetails.innerHTML = '';
         petHelperList.hidden = true;
         petHelperList.innerHTML = '';
@@ -63,7 +62,7 @@ let unsubscribe;
 // auth state before making a call to the Db
 auth.onAuthStateChanged(user => {
     if (user) {
-        console.log(user)
+        // console.log(user)
         const { serverTimestamp } = firebase.firestore.FieldValue;
 
         petHelperDiv.hidden = false
@@ -111,7 +110,19 @@ auth.onAuthStateChanged(user => {
                 const items = querySnapshot.docs.map(doc => {
                     // let date = doc.data().createdAt.toDate()
 
-                    return `<li> Name: ${doc.data().firstName + " " + doc.data().lastName} <br> Services: ${doc.data().providedServices.join(", ")}</li><button>View</button>`
+                    return `
+                    
+                    <div class="card col-md-4" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Name: ${doc.data().firstName + " " + doc.data().lastName}</h5>
+                            <p class="card-text">Services: ${doc.data().providedServices.join(", ")}</p>
+                            <a href="#" class="btn btn-primary">Contact</a>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    `
                 });
                 petHelperList.innerHTML = items.join('');
             })
